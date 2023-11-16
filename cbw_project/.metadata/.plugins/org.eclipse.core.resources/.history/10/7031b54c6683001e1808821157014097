@@ -1,0 +1,47 @@
+package com.cbw.membership.member.dto;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import com.cbw.membership.common.status.Gender;
+import com.cbw.membership.common.status.Visit;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
+public class MemberDto {
+	private long id;
+	@NotBlank
+	@Pattern(regexp = "^[a-z]+[a-z0-9]{5,10}$",message = "영문 숫자를 포함한 5~10자리로 입력하세요")
+	private String loginId;
+	@NotBlank
+	@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@#$%^&*!])[A-Za-z\\d@#$%^&*!]{8,20}$",
+			message = "영문 숫자 특수문자를 포함한 8~20자리로 입력해주세요")
+	private String password;
+	@NotBlank
+	@Pattern(regexp = "^([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))$",
+			message = "날짜형식(YYYY-MM-DD)을 확인해주세요")
+	private String birthDate;
+	@NotBlank
+	@Pattern(regexp = "^(MAN|WOMAN)$",
+			message = "MAN이나 WOMAN중 하나를 선택해주세요")
+	private String gender;
+	@NotBlank
+	@Pattern(regexp = "^[a-zA-Z][ㄱ-힣]{3,9}$",message = "3~9까지의 이름만 가능합니다")
+	private String name;
+	@NotBlank
+	@Pattern(regexp = "^(LOCAL|FOREIGNER)$",
+					message = "LOCAL이나 FOREIGNER중 하나를 선택해주세요")
+	private String visit;
+	@NotBlank
+	@Email
+	private String email;
+	
+	public MemberDto() {
+		super();
+	}
+
+	
+	
+}

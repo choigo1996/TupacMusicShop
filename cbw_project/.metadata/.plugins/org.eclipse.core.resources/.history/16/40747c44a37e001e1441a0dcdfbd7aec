@@ -1,0 +1,5 @@
+package com.cbw.membership.member.repository;
+
+public class MemberRepository {
+
+}

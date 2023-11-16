@@ -1,0 +1,36 @@
+package com.cbw.membership.member.dto;
+
+import java.time.LocalDate;
+
+import com.dw.securityproject.common.status.Gender;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
+public class MemberDto {
+	private long id;
+	@NotBlank
+	private String loginId;
+	@NotBlank
+	@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@#$%^&*!])[A-Za-z\\d@#$%^&*!]{8,20}$",
+			message = "영문 숫자 특수문자를 포함한 8~20자리로 입력해주세요")
+	private String password;
+	@NotBlank
+	private String name;
+	@NotBlank
+	@Pattern(regexp = "^([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))$",
+			message = "날짜형식(YYYY-MM-DD)을 확인해주세요")
+	private LocalDate birthDate;
+	@NotBlank
+	@Pattern(regexp = "^(MAN|WOMAN)$",
+			message = "MAN이나 WOMAN중 하나를 선택해주세요")
+	private String gender;
+	@NotBlank
+	private String email;
+}

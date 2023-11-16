@@ -1,0 +1,6 @@
+package com.cbw.membership.common.status;
+
+public enum Visit {
+	LOCAL("내국인"),
+	FOREIGNER("외국인");
+}

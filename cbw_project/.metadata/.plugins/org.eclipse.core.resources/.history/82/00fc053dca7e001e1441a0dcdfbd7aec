@@ -1,0 +1,5 @@
+package com.dw.securityproject.member.dto;
+
+public class MemberIdFind {
+	
+}

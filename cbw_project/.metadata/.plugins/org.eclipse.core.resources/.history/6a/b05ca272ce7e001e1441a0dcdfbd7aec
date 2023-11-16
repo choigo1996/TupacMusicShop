@@ -1,0 +1,72 @@
+package com.cbw.membership.member.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cbw.membership.common.exception.InvalidInputException;
+import com.cbw.membership.member.dto.MemberDto;
+import com.cbw.membership.member.dto.MemberIdFind;
+import com.cbw.membership.member.dto.MemberLoginDto;
+import com.cbw.membership.member.model.Member;
+import com.cbw.membership.member.repository.MemberRepository;
+
+
+import jakarta.transaction.Transactional;
+
+@Transactional
+@Service
+public class MemberService {
+
+	private final MemberRepository memberRepository;
+	@Autowired
+	public MemberService(MemberRepository memberRepository) {
+		super();
+		this.memberRepository = memberRepository;
+	}
+
+	public String signUp(MemberDto memberDto) {
+		//ID 중복 검사
+		Member member = memberRepository.findByLoginId(memberDto.getLoginId());
+		Member member2 = memberRepository.findByEmail(memberDto.getEmail());
+		if(member != null) {
+			throw new InvalidInputException("loginId", "이미 등록된 ID입니다.");
+		}
+		//email 중복 검사
+		if(member2 != null) {
+			throw new InvalidInputException("email", "죄송하지만,이미 등록된 이메일 입니다.");
+		}
+		//Member 객체 생성
+		member = new Member(
+				null,
+				memberDto.getLoginId(),
+				memberDto.getPassword(),
+				memberDto.getBirthDate(),
+				memberDto.getGender(),
+				memberDto.getName(),
+				memberDto.getVisit(),
+				memberDto.getEmail()
+				);
+		//리포지드 저장
+		memberRepository.save(member);
+		return "회원가입이 완료 되었습니다.";
+	}
+	//ID랑 PW를 이용한 회원 로그인
+	public String login(MemberLoginDto memberLoginDto) {
+		Member member = memberRepository.findByLoginId(memberLoginDto.getLoginId());
+		if (member != null && member.getPassword().matches(memberLoginDto.getPassword())) {
+			return member.getLoginId();
+		}else {
+			throw new InvalidInputException("loginId", "ID 또는 Password가 올바르지 않습니다."); 
+		}
+	}
+	//Email을 통한 ID찾는 방법
+			public String loginFind(MemberIdFind memberIdFind) {
+				Member member = memberRepository.findByEmail(memberIdFind.getEmail());
+				if(member == null) {
+					throw new InvalidInputException("email", "해당 이메일과 일치하는 아이디가 없습니다.");
+				}
+				return member.getLoginId();
+			}
+	//ID와 이름을 통한 패스워드 찾기
+	
+}

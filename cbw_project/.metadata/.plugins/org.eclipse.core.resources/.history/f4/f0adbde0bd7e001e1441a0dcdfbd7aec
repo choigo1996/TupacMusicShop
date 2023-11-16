@@ -1,0 +1,6 @@
+package com.cbw.membership.member.mapper;
+
+@Mapp
+public interface MemberMapper {
+	@Select
+}

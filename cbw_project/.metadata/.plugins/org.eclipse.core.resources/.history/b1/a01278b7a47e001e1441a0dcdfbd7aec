@@ -1,0 +1,5 @@
+package com.cbw.membership.member.dto;
+
+public class MemberDto {
+
+}

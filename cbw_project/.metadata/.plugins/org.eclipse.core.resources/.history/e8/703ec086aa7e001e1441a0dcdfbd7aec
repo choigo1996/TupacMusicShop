@@ -1,0 +1,48 @@
+package com.cbw.membership.member.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cbw.membership.common.exception.InvalidInputException;
+import com.cbw.membership.member.dto.MemberDto;
+import com.cbw.membership.member.model.Member;
+import com.cbw.membership.member.repository.MemberRepository;
+
+import jakarta.transaction.Transactional;
+
+@Transactional
+@Service
+public class MemberService {
+
+	private final MemberRepository memberRepository;
+	
+	@Autowired
+	public MemberService(MemberRepository memberRepository) {
+		super();
+		this.memberRepository = memberRepository;
+	}
+
+	public String signUp(MemberDto memberDto) {
+		//ID 중복 검사
+		Member member = memberRepository.findByLoginId(memberDto.getLoginId());
+		if(member != null) {
+			throw new InvalidInputException("loginId", "이미 등록된 ID입니다.");
+		}
+		
+		//Member 객체 생성
+		member = new Member(
+				null,
+				memberDto.getLoginId(),
+				memberDto.getPassword(),
+				memberDto.getBirthDate(),
+				memberDto.getGender(),
+				memberDto.getName(),
+				memberDto.getVisit(),
+				memberDto.getEmail()
+				);
+		//리포지드 저장
+		memberRepository.save(member);
+		return "회원가입이 완료 되었습니다.";
+	}
+	
+}

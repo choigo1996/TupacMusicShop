@@ -1,0 +1,31 @@
+package com.cbw.membership.member.dto;
+
+import java.time.LocalDate;
+
+import com.cbw.membership.common.status.Visit;
+import com.dw.securityproject.common.status.Gender;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
+public class MemberDto {
+	private long id;
+	@NotBlank
+	private String loginId;
+	
+	private String password;
+	
+	private LocalDate birthDate;
+	
+	private String gender;
+	
+	private String visit;
+
+	private String email;
+}

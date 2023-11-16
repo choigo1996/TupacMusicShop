@@ -1,0 +1,10 @@
+package com.cbw.membership.member.dto;
+
+import jakarta.validation.constraints.NotBlank;
+
+public class MemberPasswordFind {
+	@NotBlank
+	private String loginId;
+	@NotBlank
+	private String email;
+}

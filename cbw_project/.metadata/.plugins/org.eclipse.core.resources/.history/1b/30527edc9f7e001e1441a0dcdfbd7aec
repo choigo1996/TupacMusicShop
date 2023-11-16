@@ -1,0 +1,12 @@
+package com.cbw.membership.member.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.UniqueConstraint;
+
+@Entity
+@Table(name = "member",uniqueConstraints = {
+		@UniqueConstraint(name="uk_member_login_id", columnNames = {"loginId"})
+})
+public class Member {
+
+}

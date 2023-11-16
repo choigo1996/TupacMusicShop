@@ -1,0 +1,5 @@
+package com.cbw.membership.model;
+
+public class Member {
+
+}
