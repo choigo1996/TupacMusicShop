@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import { GameShop } from "./components/GameShopFrontEnd/GameShop";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MusicShop } from "./TupacComponents/MusicShop";
 const GlobalStyle = createGlobalStyle`
