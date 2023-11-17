@@ -19,7 +19,6 @@ export function FindPW() {
   const { data, isLoading, refetch } = useQuery(
     "pwfind",
     () => {
-      console.log("func pwfind call");
       if (loginId && email) {
         return pwfind({ loginId, email });
       }
@@ -29,7 +28,6 @@ export function FindPW() {
 
   useEffect(() => {
     if (data && data.resultCode === "SUCCESS") {
-      console.log("data", data);
       localStorage.setItem(
         "passwordState",
         JSON.stringify({ id: loginId, email })
@@ -44,15 +42,16 @@ export function FindPW() {
     }
   }, [data]);
 
-  useEffect(() => {
-    refetch();
-  }, [loginId, email]);
   function onSubmit(e) {
     e.preventDefault();
     if (!email || !loginId) {
       alert("이메일과 아이디를 입력하세요!");
     } else {
-      refetch();
+      if (data && data.resultCode === "SUCCESS") {
+        alert("회원님의 비밀번호는 " + data.message + "입니다.");
+      } else if (data && data.resultCode === "ERROR") {
+        alert("없어");
+      }
     }
   }
   return (
