@@ -65,6 +65,7 @@ export function loginfind(user) {
 }
 //비밀번호 찾기
 export function pwfind(user) {
+  console.log("pwfind", user);
   return fetch(`http://localhost:8081/api/member/pwfind`, {
     method: "POST",
     headers: {

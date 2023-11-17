@@ -12,7 +12,7 @@ import { Login } from "./Login";
 import { LogOut } from "./LogOut";
 import { Error } from "./Error";
 import { getAllAlbums } from "./api";
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { Register } from "./Register";
 import { useState } from "react";
 import { FindID } from "./FindID";
@@ -41,13 +41,24 @@ export function MusicShop() {
 
 function MusicShopLoader({ albums, albumsCheckList }) {
   const [checkList, setCheckList] = useState(albumsCheckList);
-  const [loginState, setLoginState] = useState(
-    JSON.parse(localStorage.getItem("loginState"))
-  );
+  const [loginState, setLoginState] = useState(null);
+  const [passwordState, setPasswordState] = useState(null);
+  useEffect(() => {
+    JSON.parse(localStorage.getItem("loginState"));
+  }, []);
+
   return (
     <>
       <AlbumContext.Provider
-        value={{ checkList, setCheckList, loginState, setLoginState, albums }}
+        value={{
+          checkList,
+          setCheckList,
+          loginState,
+          setLoginState,
+          albums,
+          passwordState,
+          setPasswordState,
+        }}
       >
         <BrowserRouter>
           <Routes>
