@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { AlbumContext } from "./MusicShop";
 import { Purchase } from "./Purchase";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   position: relative;
@@ -42,6 +43,7 @@ export function Cart() {
   const [purchaseComplete, setPurchaseComplete] = useState(false);
   const [purchaseFailed, setPurchaseFailed] = useState(false);
 
+  const navigate = useNavigate();
   useEffect(() => {
     setNewList(albums.filter((a, i) => checkList[i].checked));
   }, [checkList, albums]);
@@ -58,8 +60,19 @@ export function Cart() {
   }
 
   function onClickBtn() {
-    setPurchasing(true);
+    console.log(loginState);
+    if (loginState && loginState.id) {
+      setPurchasing(true);
+    } else {
+      alert("로그인이 필요합니다.");
+      console.log("login page");
+      navigate("/login");
+    }
   }
+
+  useEffect(() => {
+    console.log("Login State : ", loginState);
+  }, [loginState]);
 
   useEffect(() => {
     let price = 0;

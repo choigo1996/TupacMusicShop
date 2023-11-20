@@ -44,7 +44,11 @@ function MusicShopLoader({ albums, albumsCheckList }) {
   const [loginState, setLoginState] = useState(null);
   const [passwordState, setPasswordState] = useState(null);
   useEffect(() => {
-    JSON.parse(localStorage.getItem("loginState"));
+    const storedLoginState = setLoginState(
+      JSON.parse(localStorage.getItem("loginState"))
+    );
+    console.log("Login State", storedLoginState);
+    setLoginState(storedLoginState);
   }, []);
 
   return (

@@ -5,9 +5,30 @@ import { AlbumContext } from "./MusicShop";
 import { useQuery } from "react-query";
 import { pwfind } from "./api";
 
-const Header = styled.div``;
-const Container = styled.div``;
-
+const Container = styled.div`
+  width: 300px;
+  background-color: #eee;
+  box-shadow: 2px 2px 5px grey;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 50px;
+`;
+const Header = styled.div`
+  font-size: 1.5rem;
+  text-align: center;
+`;
+const Button = styled.button`
+  width: 100%;
+  height: 25px;
+  margin-top: 20px;
+  background-color: lightblue;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  border: 1px solid blue;
+`;
 export function FindPW() {
   console.log("Component FindPW");
   const [loginId, setloginId] = useState("");
@@ -75,7 +96,7 @@ export function FindPW() {
               onChange={(e) => setloginId(e.target.value)}
             />
           </div>
-          <button type="submit">제출</button>
+          <Button type="submit">제출</Button>
         </form>
       </Container>
     </>
