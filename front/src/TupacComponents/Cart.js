@@ -34,7 +34,8 @@ const Delete = styled.button`
 `;
 
 export function Cart() {
-  const { checkList, setCheckList, albums } = useContext(AlbumContext);
+  const { checkList, setCheckList, albums, loginState } =
+    useContext(AlbumContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const [newList, setNewList] = useState([]);
   const [purchasing, setPurchasing] = useState(false);
