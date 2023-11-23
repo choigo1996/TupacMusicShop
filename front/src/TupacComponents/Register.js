@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { AlbumContext } from "./MusicShop";
 
 const Container = styled.div`
-  width: 300px;
+  width: 350px;
   background-color: #eee;
   box-shadow: 2px 2px 5px grey;
   padding: 20px;
