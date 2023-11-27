@@ -26,25 +26,34 @@ const Content = styled.div`
 `;
 
 export function SingleProduct() {
-  const { songs } = useContext(AlbumContext);
-
   const { albums } = useContext(AlbumContext);
 
   const { id } = useParams();
 
   const album = albums.find((a) => a.id === +id);
 
-  const { title, release_date, price, image, explanation } = album;
+  const { title: albumTitle, release_date, price, image, explanation } = album;
+  const songs = album.songs || [];
   return (
     <>
-      <Title>{title}</Title>
+      <Title>{albumTitle}</Title>
       <Container>
         <Img src={image} />
         <Content>
           <p>발매일 : {release_date}</p>
           <p>가격 : {price}</p>
-          <p>앨범 설명 : {explanation}</p>
-          <p>트랙 : {songs}</p>
+          <p>앨범설명 : {explanation}</p>
+
+          <h2>트랙 목록</h2>
+          <ul>
+            {songs.map((song) => (
+              <li key={song.trackNum}>
+                <p>
+                  {song.trackNum} + "." + {song.title}
+                </p>
+              </li>
+            ))}
+          </ul>
         </Content>
       </Container>
     </>

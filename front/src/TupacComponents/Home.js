@@ -24,6 +24,7 @@ const Right = styled.img`
 `;
 const Left = styled.div`
   width: 100%;
+  padding-left: 10px;
 `;
 const Text = styled.div`
   font-size: 1.2rem;
