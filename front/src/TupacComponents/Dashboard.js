@@ -24,9 +24,7 @@ export function Dashboard() {
       {!isLoading
         ? data.map((d, i) => (
             <p key={i}>
-              <div onClick={() => onClick(d.album.id)}>
-                <Img src={d.album.image} />
-              </div>
+              <Img src={d.album.image} onClick={() => onClick(d.album.id)} />
               <br />
               타이틀 : {d.album.title}
               <br />

@@ -26,13 +26,15 @@ const Content = styled.div`
 `;
 
 export function SingleProduct() {
+  const { songs } = useContext(AlbumContext);
+
   const { albums } = useContext(AlbumContext);
 
   const { id } = useParams();
 
   const album = albums.find((a) => a.id === +id);
 
-  const { title, release_date, price, image, track } = album;
+  const { title, release_date, price, image, explanation } = album;
   return (
     <>
       <Title>{title}</Title>
@@ -41,7 +43,8 @@ export function SingleProduct() {
         <Content>
           <p>발매일 : {release_date}</p>
           <p>가격 : {price}</p>
-          <p>트랙 : {track}</p>
+          <p>앨범 설명 : {explanation}</p>
+          <p>트랙 : {songs}</p>
         </Content>
       </Container>
     </>
