@@ -39,7 +39,7 @@ export function MusicShop() {
   );
 }
 
-function MusicShopLoader({ albums, albumsCheckList }) {
+function MusicShopLoader({ songs, albums, albumsCheckList }) {
   const [checkList, setCheckList] = useState(albumsCheckList);
   const [loginState, setLoginState] = useState(null);
   const [passwordState, setPasswordState] = useState(null);
@@ -62,6 +62,7 @@ function MusicShopLoader({ albums, albumsCheckList }) {
           albums,
           passwordState,
           setPasswordState,
+          songs,
         }}
       >
         <BrowserRouter>

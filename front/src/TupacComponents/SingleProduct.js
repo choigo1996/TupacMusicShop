@@ -32,8 +32,14 @@ export function SingleProduct() {
 
   const album = albums.find((a) => a.id === +id);
 
-  const { title: albumTitle, release_date, price, image, explanation } = album;
-  const songs = album.songs || [];
+  const {
+    title: albumTitle,
+    release_date,
+    price,
+    image,
+    explanation,
+    songs,
+  } = album;
   return (
     <>
       <Title>{albumTitle}</Title>
@@ -44,13 +50,11 @@ export function SingleProduct() {
           <p>가격 : {price}</p>
           <p>앨범설명 : {explanation}</p>
 
-          <h2>트랙 목록</h2>
+          <h2>노래 목록</h2>
           <ul>
             {songs.map((song) => (
-              <li key={song.trackNum}>
-                <p>
-                  {song.trackNum} + "." + {song.title}
-                </p>
+              <li key={song.id}>
+                {song.trackNum}. {song.title}
               </li>
             ))}
           </ul>
